@@ -1,0 +1,400 @@
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0E0E0E;
+      --dark:    #161616;
+      --mid:     #232323;
+      --edge:    #2E2E2E;
+      --lapizblue:  #0990ff;
+      --orange2: #FF7033;
+      --fg:      #F0EDE8;
+      --fg2:     #A09890;
+      --fg3:     #5A5450;
+      --white:   #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', system-ui, sans-serif;
+      background: #080808;
+      color: var(--fg);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO — full-bleed dark panel ──────────────────────────────────────── */
+    .hero {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    /* Diagonal lapizblue slash — the signature element */
+    .hero-slash {
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%;
+      height: 100%;
+      background: var(--lapizblue);
+      clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 0;
+    }
+
+    /* Noise texture on slash */
+    .hero-slash::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 4px,
+        rgba(0,0,0,0.08) 4px,
+        rgba(0,0,0,0.08) 5px
+      );
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      align-items: stretch;
+      max-width: 960px;
+      margin: 0 auto;
+      min-height: 420px;
+    }
+
+    /* Left: identity */
+    .hero-identity {
+      padding: 56px 48px 48px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0;
+    }
+
+    .hero-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 5px;
+      color: var(--lapizblue);
+      margin-bottom: 4px;
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 9vw, 100px);
+      color: var(--white);
+      line-height: 0.88;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .hero-role {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--fg2);
+      margin-bottom: 24px;
+    }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .hero-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--fg);
+      padding: 5px 14px;
+    }
+
+    .hero-tag.outline {
+      background: transparent;
+      color: var(--fg2);
+      border: 1px solid var(--edge);
+    }
+
+    /* Right: photo panel */
+    .hero-photo-panel {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0;
+    }
+
+    .hero-photo-box {
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      border-left: 3px solid rgba(255,255,255,0.08);
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    .hero-photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .upload-icon { opacity: 0.2; }
+
+    .upload-hint {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── NAV STRIP ──────────────────────────────────────────────────────────── */
+    .nav-strip {
+      background: var(--lapizblue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+      height: 44px;
+    }
+
+    .nav-programme {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--black);
+    }
+
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+
+    .nav-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.65);
+      text-decoration: none;
+    }
+
+    .nav-link:hover { color: var(--black); }
+
+    /* ── BODY ───────────────────────────────────────────────────────────────── */
+    .body-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--dark);
+    }
+
+    /* ── SECTION ────────────────────────────────────────────────────────────── */
+    .section {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border-bottom: 1px solid var(--edge);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    /* Left col: number + label */
+    .sec-left {
+      background: var(--black);
+      padding: 36px 28px 36px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 6px;
+      border-right: 1px solid var(--edge);
+      position: relative;
+    }
+
+    /* Orange top accent bar on each section */
+    .sec-left::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 52px; right: 0;
+      height: 2px;
+      background: var(--lapizblue);
+    }
+
+    .sec-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--edge);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .sec-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--lapizblue);
+    }
+
+    /* Right col: content */
+    .sec-right {
+      padding: 36px 52px 36px 36px;
+    }
+
+    .sec-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: var(--white);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .sec-prompt {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--fg3);
+      font-style: italic;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .sec-answer {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--fg2);
+      line-height: 1.8;
+    }
+
+    /* ── TECH STACK — stat cards ────────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 2px;
+    }
+
+    .stat-card {
+      background: var(--mid);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-status {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .stat-status.known { color: var(--lapizblue); }
+    .stat-status.learning { color: var(--fg3); }
+
+    .stat-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--fg);
+      line-height: 1.1;
+    }
+
+    .stat-name.placeholder {
+      color: var(--fg3);
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    /* ── SKILLS — numbered list ─────────────────────────────────────────────── */
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .skill-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .skill-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--lapizblue);
+      line-height: 1;
+    }
+
+    .skill-text {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--fg2);
+      line-height: 1.65;
+      padding-top: 6px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--black);
+      padding: 18px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-top: 2px solid var(--lapizblue);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .footer-copy {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--fg3);
+    }
+
+    .footer-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--lapizblue);
+      text-decoration: none;
+    }
+
+    .footer-back:hover { color: var(--white); }
+
+    @media (max-width: 680px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-slash { width: 100%; clip-path: none; height: 4px; top: auto; bottom: 0; }
+      .hero-photo-panel { display: none; }
+      .hero-identity { padding: 40px 24px 36px; }
+      .nav-strip { padding: 0 24px; }
+      .section { grid-template-columns: 1fr; }
+      .sec-left { padding: 20px 24px 12px; flex-direction: row; align-items: center; gap: 12px; }
+      .sec-left::before { left: 24px; }
+      .sec-num { font-size: 32px; }
+      .sec-right { padding: 20px 24px 28px; }
+      .footer { padding: 16px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
